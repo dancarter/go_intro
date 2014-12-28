@@ -12,6 +12,17 @@ func Greet(name string) {
   fmt.Println("Hello, " + name)
 }
 
+func GreetNames(names []string) {
+  // _     - index, not being used so _ throws it away.
+  //         Can be set to a variable to be used if needed
+  // n     - the value at the current index in the array
+  // range - takes the array names and passes back each
+  //         value with its index
+  for _, n := range names {
+    Greet(n)
+  }
+}
+
 func main() {
   // Long form variable declaration  - var name string = "Daniel"
   // Short form variable declaration - name := "Daniel"
@@ -24,12 +35,5 @@ func main() {
     "Leo",
   }
 
-  // _     - index, not being used so _ throws it away.
-  //         Can be set to a variable to be used if needed
-  // n     - the value at the current index in the array
-  // range - takes the array names and passes back each
-  //         value with its index
-  for _, n := range names {
-    Greet(n)
-  }
+  GreetNames(names)
 }
