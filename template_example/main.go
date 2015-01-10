@@ -23,17 +23,14 @@ func main() {
   u := User{"Daniel", "Carter", "dan@example.com", 26}
 
   body, _ := ioutil.ReadFile("templates/file1.tmpl")
-  htmlbody, _ := ioutil.ReadFile("templates/file2.html")
-
   tmpl1, err := template.New("Some Name").Parse(string(body))
   if err != nil {
     log.Panic(err)
   }
-  tmpl2, err := template.New("Some Name").Parse(string(htmlbody))
-  if err != nil {
+  tmpl1.Execute(os.Stdout, u)
+
+  tmpl2, _ := template.ParseFiles("templates/file2.html", "templates/file3.html")
+  if err = tmpl2.ExecuteTemplate(os.Stdout, "file2.html", u); err != nil {
     log.Panic(err)
   }
-
-  tmpl1.Execute(os.Stdout, u)
-  tmpl2.Execute(os.Stdout, u)
 }
